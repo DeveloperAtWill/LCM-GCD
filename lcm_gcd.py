@@ -16,9 +16,11 @@ def general_operation(z): #z is a list containing all type of numbers except com
     for i in range(len(z)):
         data = str(z[i]).split(".")
         if(len(data) == 2):
-            denominator_of_each_element = 10**len(data[1]) / main_activity(int(data[0]), int(data[1]))[1]
-            denominator.append(int(denominator_of_each_element))
-            neumerator.append(int(int(data[0] + data[1]) / main_activity(int(data[0]), int(data[1]))[1]))
+            denominator_of_each_element = 10**len(data[1])
+            neumerator_of_each_element = int(int(data[0] + data[1]))
+            divisor = main_activity(neumerator_of_each_element,denominator_of_each_element)[1]
+            denominator.append(denominator_of_each_element/divisor)
+            neumerator.append(neumerator_of_each_element/divisor)
         else:
             denominator.append(1)
             neumerator.append(int(data[0]))
@@ -37,4 +39,5 @@ def general_operation(z): #z is a list containing all type of numbers except com
     return [lcm, gcd]
      
 number_list = list(eval(input("Enter numbers in a,b,c,... format : ")))
-print(f"The LCM of the entries is : {general_operation(number_list)[0]} \nThe GCD of the entries is : {general_operation(number_list)[1]}")
+data  = general_operation(number_list)
+print(f"The LCM of the entries is : {data[0]} \nThe GCD of the entries is : {data[1]}")
